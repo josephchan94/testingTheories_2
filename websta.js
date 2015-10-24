@@ -13,17 +13,16 @@ webdriverio
 		// startup functions
     .remote(options)
     .init()
-    .url('http://iconosquare.com/')
+    .url('http://websta.me/login')
 
 		// log in
-		.click('.login_header_mobile')
+		//.click('.login_header_mobile')
 		.setValue('#id_username', 'josephcphoto')
 		.setValue('#id_password', '')
 		.click('input.button-green')
 
 		// search
-		.url('http://iconosquare.com/viewer.php?search=' + searchQuery) // search
-    .click('.like_picto_unselected') //likes first photo lol
+		.url('http://websta.me/tag/' + searchQuery) // search
 
 		// shutdown functions
 		.pause(2000)
