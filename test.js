@@ -1,13 +1,29 @@
-'use strict';
+var webdriverio = require('webdriverio'),
+		By = webdriverio.by,
+		until = webdriverio.until;
 
-var webdriver = require('selenium-webdriver'), // includes the web driver module
-  By = webdriver.by,
-  until= webdriver.until;
+var options = {
+    desiredCapabilities: {
+        browserName: 'firefox'
+    }
+};
 
-var driver = new webdriver.Builder().withCapabilities( // creates an instance of web driver
-  webdriver.Capabilities.firefox() // opens firefox
-).build();
+webdriverio
+		// startup functions
+    .remote(options)
+    .init()
+    .url('http://iconosquare.com/')
 
-driver.get("http://iconosquare.com");
-driver.findElement(By.class("getSearch")).sendKeys("dbgameday");
-driver.findElement(By.id("startSearch")).click()
+		// log in
+		.click('.login_header_mobile')
+		.setValue('#id_username', 'wafflethefatbunny')
+		.setValue('#id_password', 'bruin111')
+		.click('input.button-green')
+
+		// search
+		.setValue('#getSearch', 'dbgameday')
+
+
+		// shutdown functions
+		.pause(2000)
+    .end();
